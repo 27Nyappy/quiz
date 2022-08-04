@@ -1,13 +1,6 @@
 import { makeStyles } from 'tss-react/mui';
 
 const useStyles = makeStyles()((theme) => ({
-  landingPageContainer: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    height: '40%',
-    margin: theme.spacing(0, 1),
-  },
   title: {
     '&[class*="MuiTypography-root"]': {
       margin: theme.spacing(2, 1, 1),

@@ -1,14 +1,16 @@
+import { createContext, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import CssBaseline from '@mui/material/CssBaseline';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import LandingPage from './LandingPage';
+import QuizPage from './QuizPage';
 import useStyles from './App.styles';
 
 const theme = createTheme({
   components: {
     MuiButtonBase: {
       defaultProps: {
-        disableRipple: true, 
+        disableRipple: true,
       },
     },
   },
@@ -45,20 +47,46 @@ const theme = createTheme({
   },
 });
 
+export const QuizContext = createContext<{
+  userAnswers: { [key: string]: string };
+  setUserAnswers: React.Dispatch<
+    React.SetStateAction<{
+      [key: string]: string;
+    }>
+  >;
+}>({
+  userAnswers: {
+    1: '',
+    2: '',
+    3: '',
+  },
+  setUserAnswers: () => undefined,
+});
+
 const App = () => {
+  const [userAnswers, setUserAnswers] = useState<{ [key: string]: string }>({
+    1: '',
+    2: '',
+    3: '',
+  });
   const { classes } = useStyles();
 
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <div className={classes.imageContainer} />
-      <BrowserRouter>
-        <Routes>
-          <Route path='/' element={<LandingPage />} />
-        </Routes>
-      </BrowserRouter>
+      <div className={classes.contentContainer}>
+        <BrowserRouter>
+          <QuizContext.Provider value={{ userAnswers, setUserAnswers }}>
+            <Routes>
+              <Route path='/' element={<LandingPage />} />
+              <Route path='/quiz' element={<QuizPage />} />
+            </Routes>
+          </QuizContext.Provider>
+        </BrowserRouter>
+      </div>
     </ThemeProvider>
   );
-}
+};
 
 export default App;

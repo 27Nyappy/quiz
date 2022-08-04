@@ -6,7 +6,7 @@ const LandingPage = () => {
   const { classes } = useStyles();
 
   return (
-    <div className={classes.landingPageContainer}>
+    <>
       <Typography
         className={classes.title}
         component='h1'
@@ -22,7 +22,7 @@ const LandingPage = () => {
       <Button className={classes.startButton} href='/quiz'>
         Start Test
       </Button>
-    </div>
+    </>
   );
 };
 

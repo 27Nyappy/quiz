@@ -13,6 +13,14 @@ const useStyles = makeStyles()((theme) => ({
       height: '250px',
     },
   },
+  contentContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '40%',
+    margin: theme.spacing(0, 1),
+  },
 }));
 
 export default useStyles;
