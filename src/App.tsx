@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import CssBaseline from '@mui/material/CssBaseline';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import LandingPage from './LandingPage';
+import Results from './Results';
 import QuizPage from './QuizPage';
 import useStyles from './App.styles';
 
@@ -81,6 +82,7 @@ const App = () => {
             <Routes>
               <Route path='/' element={<LandingPage />} />
               <Route path='/quiz' element={<QuizPage />} />
+              <Route path='/results' element={<Results />} />
             </Routes>
           </QuizContext.Provider>
         </BrowserRouter>

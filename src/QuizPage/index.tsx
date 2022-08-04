@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   FormControl,
   FormControlLabel,
@@ -8,77 +9,14 @@ import {
 } from '@mui/material';
 import { Button } from '../components';
 import { QuizContext } from '../App';
+import { questions } from '../utils/data/questions';
+import useStyles from './styles';
 
 const QuizPage = () => {
+  const navigate = useNavigate();
   const { userAnswers, setUserAnswers } = useContext(QuizContext);
   const [currentQuestion, setCurrentQuestion] = useState<number>(0);
-  
-  const questions = [
-    {
-      label: 'Which breed of dog was originally bred to hunt wolves?',
-      options: [
-        {
-          label: 'Neapolitan Mastiff',
-          value: 'neapolitan-mastiff',
-        },
-        {
-          label: 'Leonberger',
-          value: 'leonberger',
-        },
-        {
-          label: 'Transylvanian Hound',
-          value: 'transylvanian-hound',
-        },
-        {
-          label: 'Irish wolfhound',
-          value: 'irish-wolfhound',
-        },
-      ],
-    },
-    {
-      label: "Where do Shiba Inu's come from?",
-      options: [
-        {
-          label: 'Liechtenstein',
-          value: 'liechtenstein',
-        },
-        {
-          label: 'Gine-Bissau',
-          value: 'gine-bissau',
-        },
-        {
-          label: 'Japan',
-          value: 'japan',
-        },
-        {
-          label: 'Tonga',
-          value: 'tonga',
-        },
-      ],
-    },
-    {
-      label:
-        'Most dog breeds bark, but what does the Basenji breed do instead?',
-      options: [
-        {
-          label: 'Yodel',
-          value: 'yodel',
-        },
-        {
-          label: 'Scream',
-          value: 'scream',
-        },
-        {
-          label: 'Squeak',
-          value: 'squeak',
-        },
-        {
-          label: 'Chirp',
-          value: 'chirp',
-        },
-      ],
-    },
-  ];
+  const { classes } = useStyles();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUserAnswers({
@@ -91,6 +29,8 @@ const QuizPage = () => {
     event.preventDefault();
     if (currentQuestion < 2) {
       setCurrentQuestion(currentQuestion + 1);
+    } else {
+      navigate('/results');
     }
   };
 
@@ -117,7 +57,7 @@ const QuizPage = () => {
             </RadioGroup>
           </FormControl>
         </div>
-        <Button type='submit' style={{ display: 'flex' }}>
+        <Button type='submit' className={classes.button}>
           {currentQuestion < 2 ? 'Next' : 'Submit'}
         </Button>
       </form>
