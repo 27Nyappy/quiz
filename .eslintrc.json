@@ -23,7 +23,9 @@
         "prettier"
     ],
     "rules": {
-        "jsx-quotes": ["error", "prefer-single"]
+        "jsx-quotes": ["error", "prefer-single"],
+        "react/jsx-uses-react": "off",
+        "react/react-in-jsx-scope": "off"
     },
     "settings": {
         "import/resolver": {
