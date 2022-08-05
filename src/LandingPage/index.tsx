@@ -1,8 +1,9 @@
+import { FC } from 'react';
 import { Typography } from '@mui/material';
 import { Button } from '../components';
 import useStyles from './styles';
 
-const LandingPage = () => {
+const LandingPage: FC = () => {
   const { classes } = useStyles();
 
   return (
@@ -12,6 +13,7 @@ const LandingPage = () => {
         component='h1'
         variant='h3'
         align='center'
+        color='primary.main'
       >
         Dog Quiz
       </Typography>

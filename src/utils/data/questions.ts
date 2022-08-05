@@ -1,4 +1,6 @@
-export const questions = [
+import { AnswerDataType } from "../types";
+
+export const questions: AnswerDataType[] = [
   {
     label: 'Which breed of dog was originally bred to hunt wolves?',
     options: [

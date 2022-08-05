@@ -7,6 +7,8 @@ import Results from './Results';
 import QuizPage from './QuizPage';
 import useStyles from './App.styles';
 
+type UserAnswersType = { [key: string]: string };
+
 const theme = createTheme({
   components: {
     MuiButtonBase: {
@@ -48,28 +50,23 @@ const theme = createTheme({
   },
 });
 
+const defaultAnswers = {
+  1: '',
+  2: '',
+  3: '',
+};
+
 export const QuizContext = createContext<{
-  userAnswers: { [key: string]: string };
-  setUserAnswers: React.Dispatch<
-    React.SetStateAction<{
-      [key: string]: string;
-    }>
-  >;
+  userAnswers: UserAnswersType;
+  setUserAnswers: React.Dispatch<React.SetStateAction<UserAnswersType>>;
 }>({
-  userAnswers: {
-    1: '',
-    2: '',
-    3: '',
-  },
+  userAnswers: defaultAnswers,
   setUserAnswers: () => undefined,
 });
 
 const App = () => {
-  const [userAnswers, setUserAnswers] = useState<{ [key: string]: string }>({
-    1: '',
-    2: '',
-    3: '',
-  });
+  const [userAnswers, setUserAnswers] =
+    useState<UserAnswersType>(defaultAnswers);
   const { classes } = useStyles();
 
   return (
